@@ -29,7 +29,7 @@ class DetailTodoViewModel(application: Application)
             db.TodoDao().insertAll(*list.toTypedArray())
         }
     }
-    fun update(title:String, notes:String, priority:Int, uuid:Int) {
+    fun updateTodo(title:String, notes:String, priority:Int, uuid:Int) {
         launch {
             val db = buildDb(getApplication())
             db.TodoDao().update(title, notes, priority, uuid)

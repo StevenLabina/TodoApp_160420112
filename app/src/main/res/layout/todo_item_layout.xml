@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
             name="todo"
             type="com.example.todoapp.model.Todo" />
+        <variable
+            name="checkListener"
+            type="com.example.todoapp.view.TodoItemLayoutInterface" />
+        <variable
+            name="editlistener"
+            type="com.example.todoapp.view.TodoItemLayoutInterface" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,9 +27,12 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-
+            android:tag="@{todo.uuid}"
+            android:onClick="@{editlistener::onTodoEditClick}"
             android:layout_marginBottom="8dp"
-            android:text="CheckBox"
+            android:text="@{todo.title}"
+            android:checked="false"
+            android:onCheckedChanged="@{(cb, isChecked)-> checkListener.onCheckedChange(cb,isChecked,todo)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
